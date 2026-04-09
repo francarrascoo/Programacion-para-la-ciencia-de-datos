@@ -36,14 +36,48 @@ python --version
 
 > Si en Windows `python` no funciona, usa `py` en los mismos comandos.
 
-#### 3. Instalar dependencias (sin entorno virtual)
+#### 3. Crear y activar entorno virtual (recomendado para evaluación)
+
+Windows (PowerShell):
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
+
+Windows (CMD):
+
+```cmd
+python -m venv .venv
+.venv\Scripts\activate.bat
+```
+
+macOS/Linux (bash/zsh):
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+Verificación del entorno activo:
+
+```bash
+python --version
+python -m pip --version
+```
+
+> Para salir del entorno virtual en cualquier sistema: `deactivate`
+
+#### 4. Instalar dependencias
 
 ```bash
 python -m pip install --upgrade pip setuptools wheel
 python -m pip install -r requirements.txt
 ```
 
-#### 4. Ejecutar el notebook
+> Si decidiste no usar entorno virtual, estos comandos funcionan igual en tu instalación global de Python.
+
+#### 5. Ejecutar el notebook
 
 ```bash
 python -m jupyter notebook notebooks/notebook.ipynb
@@ -52,7 +86,7 @@ python -m jupyter notebook notebooks/notebook.ipynb
 > Si ya estás dentro de la carpeta `notebooks`, usa:
 > `python -m jupyter notebook notebook.ipynb`
 
-#### 5. Ejecutar directamente en VS Code (sin comando jupyter)
+#### 6. Ejecutar directamente en VS Code (sin comando jupyter)
 
 1. Instalar las extensiones **Python** y **Jupyter** desde el Marketplace de VS Code.
 2. Abrir `notebooks/notebook.ipynb` desde el explorador de archivos de VS Code.
@@ -61,6 +95,51 @@ python -m jupyter notebook notebooks/notebook.ipynb
 5. Ejecutar celdas con **Run Cell** o todo el notebook con **Run All**.
 
 > Recomendado para este proyecto: ejecutar el notebook dentro de VS Code y usar terminal solo para instalar dependencias.
+
+---
+
+## 🧪 Reproducibilidad del Entorno
+
+Para que otra persona ejecute el proyecto sin diferencias de dependencias:
+
+1. Crear y activar `.venv`:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+```
+
+Si PowerShell bloquea la activación:
+
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\.venv\Scripts\Activate.ps1
+```
+
+2. Instalar dependencias del proyecto:
+
+```powershell
+python -m pip install --upgrade pip setuptools wheel
+python -m pip install -r requirements.txt
+```
+
+3. Seleccionar kernel del entorno en VS Code/Jupyter:
+- Abrir `notebooks/notebook.ipynb`.
+- Click en `Select Kernel`.
+- Elegir el intérprete de `.venv` (ejemplo: `.venv\\Scripts\\python.exe`).
+
+4. Ejecutar notebook completo:
+- Ejecutar `Run All` desde la primera celda hasta la última.
+
+5. Verificación rápida de reproducibilidad (opcional y recomendada):
+
+```python
+import sys
+print(sys.executable)
+```
+
+La ruta debe apuntar a `.venv\\Scripts\\python.exe`.
+
 
 ---
 
