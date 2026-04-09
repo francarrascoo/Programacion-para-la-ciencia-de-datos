@@ -1,122 +1,85 @@
-# Proyecto: Preparación de Datos para Ciencia de Datos
+# Evaluación 1: Preprocesamiento de Datos de Clientes
 
-Repositorio académico orientado al **análisis exploratorio, limpieza, transformación y validación de datos** en un caso realista de clientes, siguiendo buenas prácticas de ingeniería de datos y documentación técnica.
+**Autores**: Felipe Ahumada Silva - Francisca Carrasco Lozano  
+**Fecha**: Abril 2026
 
-## 1) Objetivo del proyecto
+---
 
-Desarrollar un flujo reproducible de preparación de datos que permita:
+## 📋 Descripción
 
-- comprender el dataset de clientes,
-- detectar y corregir problemas de calidad,
-- transformar variables para una etapa posterior de modelado,
-- validar integridad, consistencia y procedencia de los datos,
-- comunicar hallazgos con visualizaciones y reporte técnico.
+Análisis completo de calidad de datos y preprocesamiento de 20,400 registros de clientes. Incluye:
 
-## 2) Estructura del repositorio
+- Diagnóstico de nulos, duplicados, inconsistencias y outliers
+- Feature engineering (4 variables derivadas)
+- Pipeline automatizado de transformación
+- Análisis de tasas de abandono
 
-```text
-.
-├── README.md
-├── data/
-│   └── dataset_clientes.csv
-├── docs/
-├── notebooks/
-├── outputs/
-└── scripts/
+---
+
+## 🚀 Instalación Rápida
+
+#### 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/francarrascoo/Programacion-para-la-ciencia-de-datos.git
+cd Programacion-para-la-ciencia-de-datos
 ```
 
-Descripción de carpetas:
+#### 2. Abrir en tu IDE y ejecutar en terminal
 
-- `data/`: datos crudos y (opcionalmente) datos procesados.
-- `notebooks/`: análisis exploratorio, limpieza y transformación en Jupyter.
-- `scripts/`: funciones auxiliares reutilizables (equivalente al `src/` sugerido en pauta).
-- `outputs/`: visualizaciones y reportes generados.
-- `docs/`: informe técnico final y documentación complementaria.
+```bash
+pip install -r requirements.txt
+jupyter notebook notebooks/notebook.ipynb
+```
 
-## 3) Stack tecnológico
+---
 
-- Python 3.10+
-- Jupyter Notebook
-- Pandas
-- NumPy
-- Matplotlib y/o Seaborn (visualización)
+## 📁 Estructura
 
-## 4) Reproducibilidad: configuración del entorno
+```
+├── README.md
+├── requirements.txt                 # Requisitos
+├── notebooks/notebook.ipynb          # Notebook
+├── data/
+│   ├── dataset_clientes.csv         # Original
+│   └── dataset_clientes_procesado.csv  # Procesado
+└── outputs/visualizaciones/         # Gráficos
+```
 
-### Opción principal: Google Colab
+---
 
-1. Abrir los notebooks desde `notebooks/` en Colab.
-2. Ejecutar una celda inicial de dependencias (solo si falta alguna librería):
-   - `!pip install -q pandas numpy matplotlib seaborn`
-3. Montar Google Drive si se trabajará con archivos fuera del repositorio.
-4. Verificar rutas de lectura/escritura para `data/` y `outputs/`.
+## 📊 Contenido del Notebook
 
-### Opción alternativa (local): `venv` o Conda
+| Sección | Descripción |
+|---------|-------------|
+| **Diagnóstico** | Nulos, 400 duplicados, valores negativos |
+| **Estadísticas** | Descriptivos numéricas y categóricas |
+| **Outliers** | Detección IQR en variables financieras |
+| **Pipeline** | Winsorize → KNN → Escalado → Codificación |
+| **Validación** | Comparativa pre/post transformación |
+| **Análisis** | Tasas de abandono y correlaciones |
 
-Si alguien del equipo trabaja localmente, puede usar entorno virtual/Conda para mantener compatibilidad con Colab.
+---
 
-## 5) Flujo de trabajo recomendado
+## 🔍 Hallazgos Clave
 
-1. **Carga y perfilado inicial** del dataset.
-2. **EDA**: estadísticas descriptivas, distribución de variables y relaciones.
-3. **Limpieza**:
-   - tratamiento de nulos,
-   - duplicados,
-   - outliers,
-   - estandarización de formatos.
-4. **Transformación**:
-   - codificación de variables,
-   - escalamiento/normalización según corresponda,
-   - ingeniería de características justificada.
-5. **Validación de calidad e integridad**:
-   - reglas de consistencia,
-   - revisión de tipos y dominios,
-   - control de cambios y trazabilidad.
-6. **Exportación de resultados** a `outputs/` y/o `data/processed`.
-7. **Documentación** en notebooks + informe técnico en `docs/`.
+- **400 duplicados eliminados** → 20,400 → 20,000 registros
+- **Valores negativos** en ingreso, gasto y deuda (convertidos a NaN)
+- **400+ outliers detectados** por IQR en variables monetarias
+- **4 variables derivadas** creadas: ratio_gasto, ratio_deuda_ingreso, margen_ingreso, segmento_score
+- **Distribuciones post-pipeline** más normales y sin extremos
 
-## 6) Entregables esperados
+---
 
-- Enlace del repositorio GitHub del equipo.
-- Informe técnico en PDF (8–12 páginas) en `docs/`.
-- Notebooks reproducibles en `notebooks/`.
-- Resultados visuales y tablas en `outputs/`.
+## 🛠️ Metodología
 
-## 7) Contenido mínimo del informe técnico (8–12 páginas)
+**IQR para outliers**: Robusto, sin supuestos de normalidad  
+**Feature Engineering antes**: Preserva interpretabilidad económica  
+**Dos pipelines categóricos**: OneHot (nominales) + Ordinal (ordinales)
 
-1. Resumen ejecutivo.
-2. Análisis exploratorio inicial.
-3. Metodología de transformación (con justificación técnica).
-4. Resultados y validación de calidad.
-5. Conclusiones, dificultades y recomendaciones.
+---
 
-## 8) Criterios de calidad (checklist rápido)
+## 📧 Autores
 
-- [ ] Código legible, modular y con docstrings.
-- [ ] Uso correcto de filtros, agrupaciones y joins en Pandas.
-- [ ] Visualizaciones pertinentes y bien interpretadas.
-- [ ] Transformaciones coherentes con el tipo de variable y objetivo.
-- [ ] Flujo de limpieza técnicamente justificado.
-- [ ] Entorno reproducible documentado (celda de instalación en Colab y/o `requirements.txt`).
-- [ ] Verificación de integridad/procedencia aplicada y documentada.
-
-## 9) Presentación oral: preparación sugerida
-
-Cada integrante debería poder explicar:
-
-- decisiones de limpieza y su impacto,
-- transformaciones aplicadas y su fundamento,
-- operaciones clave de Pandas implementadas,
-- principales hallazgos estadísticos y visuales,
-- importancia de validar datos antes del modelado.
-
-## 10) Fechas clave (según pauta)
-
-- **Entrega del encargo:** miércoles 8 de abril (antes del término de clase).
-- **Sesión de preguntas individuales:** jueves 9 de abril.
-
-## 11) Notas para el equipo
-
-- Registrar decisiones técnicas en cada notebook (por qué se hizo, no solo qué se hizo).
-- Mantener versiones limpias de gráficos/tablas en `outputs/`.
-- Evitar celdas con ejecución rota; validar notebooks antes de entregar.
+Felipe Ahumada Silva | Francisca Carrasco Lozano  
+GitHub: https://github.com/francarrascoo/Programacion-para-la-ciencia-de-datos
