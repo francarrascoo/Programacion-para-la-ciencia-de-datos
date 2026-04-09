@@ -10,7 +10,7 @@
 Análisis completo de calidad de datos y preprocesamiento de 20,400 registros de clientes. Incluye:
 
 - Diagnóstico de nulos, duplicados, inconsistencias y outliers
-- Feature engineering (4 variables derivadas)
+- Feature engineering (1 variable numérica derivada y 2 segmentaciones ordinales)
 - Pipeline automatizado de transformación
 - Análisis de tasas de abandono
 
@@ -66,7 +66,8 @@ jupyter notebook notebooks/notebook.ipynb
 - **400 duplicados eliminados** → 20,400 → 20,000 registros
 - **Valores negativos** en ingreso, gasto y deuda (convertidos a NaN)
 - **400+ outliers detectados** por IQR en variables monetarias
-- **4 variables derivadas** creadas: ratio_gasto, ratio_deuda_ingreso, margen_ingreso, segmento_score
+- **1 variable numérica derivada** creada: ratio_deuda_ingreso
+- **2 variables ordinales de segmentación** creadas: segmento_score, antiguedad_ultima_compra
 - **Distribuciones post-pipeline** más normales y sin extremos
 
 ---
@@ -76,6 +77,12 @@ jupyter notebook notebooks/notebook.ipynb
 **IQR para outliers**: Robusto, sin supuestos de normalidad  
 **Feature Engineering antes**: Preserva interpretabilidad económica  
 **Dos pipelines categóricos**: OneHot (nominales) + Ordinal (ordinales)
+
+---
+
+## ✅ Conclusiones
+
+- Se observa una relación creciente entre el tiempo transcurrido desde la última compra y la tasa de abandono. En los clientes con menor antigüedad desde la última compra, la proporción de abandono es más baja, mientras que en los grupos con mayor antigüedad aumenta de forma marcada. Esto justifica la segmentación, porque sugiere que mientras más tiempo pasa sin comprar el cliente, mayor es la probabilidad observada de fuga.
 
 ---
 
