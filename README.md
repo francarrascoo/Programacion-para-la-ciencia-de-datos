@@ -39,11 +39,16 @@ jupyter notebook notebooks/notebook.ipynb
 ```
 ├── README.md
 ├── requirements.txt                 # Requisitos
-├── notebooks/notebook.ipynb          # Notebook
 ├── data/
 │   ├── dataset_clientes.csv         # Original
 │   └── dataset_clientes_procesado.csv  # Procesado
-└── outputs/visualizaciones/         # Gráficos
+├── docs/
+├── notebooks/
+│   └── notebook.ipynb               # Notebook principal
+├── outputs/
+│   ├── reportes_generados/          # Reportes PNG
+│   └── visualizaciones/             # Gráficos
+└── scripts/
 ```
 
 ---
@@ -77,12 +82,6 @@ jupyter notebook notebooks/notebook.ipynb
 **IQR para outliers**: Robusto, sin supuestos de normalidad  
 **Feature Engineering antes**: Preserva interpretabilidad económica  
 **Dos pipelines categóricos**: OneHot (nominales) + Ordinal (ordinales)
-
----
-
-## ✅ Conclusiones
-
-- Se observa una relación creciente entre el tiempo transcurrido desde la última compra y la tasa de abandono. En los clientes con menor antigüedad desde la última compra, la proporción de abandono es más baja, mientras que en los grupos con mayor antigüedad aumenta de forma marcada. Esto justifica la segmentación, porque sugiere que mientras más tiempo pasa sin comprar el cliente, mayor es la probabilidad observada de fuga.
 
 ---
 
