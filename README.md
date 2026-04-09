@@ -18,6 +18,9 @@ Análisis completo de calidad de datos y preprocesamiento de 20,400 registros de
 
 ## 🚀 Instalación Rápida
 
+> Flujo estandar para todos: mismos pasos en Windows, macOS y Linux.
+> Versiones recomendadas de Python: 3.10 a 3.14.
+
 #### 1. Clonar el repositorio
 
 ```bash
@@ -25,12 +28,39 @@ git clone https://github.com/francarrascoo/Programacion-para-la-ciencia-de-datos
 cd Programacion-para-la-ciencia-de-datos
 ```
 
-#### 2. Abrir en tu IDE y ejecutar en terminal
+#### 2. Verificar Python
 
 ```bash
-pip install -r requirements.txt
-jupyter notebook notebooks/notebook.ipynb
+python --version
 ```
+
+> Si en Windows `python` no funciona, usa `py` en los mismos comandos.
+
+#### 3. Instalar dependencias (sin entorno virtual)
+
+```bash
+python -m pip install --upgrade pip setuptools wheel
+python -m pip install -r requirements.txt
+```
+
+#### 4. Ejecutar el notebook
+
+```bash
+python -m jupyter notebook notebooks/notebook.ipynb
+```
+
+> Si ya estás dentro de la carpeta `notebooks`, usa:
+> `python -m jupyter notebook notebook.ipynb`
+
+#### 5. Ejecutar directamente en VS Code (sin comando jupyter)
+
+1. Instalar las extensiones **Python** y **Jupyter** desde el Marketplace de VS Code.
+2. Abrir `notebooks/notebook.ipynb` desde el explorador de archivos de VS Code.
+3. En la esquina superior derecha del notebook, seleccionar un kernel de Python.
+4. Si VS Code lo solicita, instalar `ipykernel`.
+5. Ejecutar celdas con **Run Cell** o todo el notebook con **Run All**.
+
+> Recomendado para este proyecto: ejecutar el notebook dentro de VS Code y usar terminal solo para instalar dependencias.
 
 ---
 
